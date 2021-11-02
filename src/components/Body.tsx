@@ -3,18 +3,22 @@ import { PropsWithChildUnits } from '../builder/types'
 
 type Props = PropsWithChildUnits<{
     text: string
-}, 'BodyChild'>
+}, 'BodyChild' | 'UserList'>
 
 export const Body: FC<Props> = ({
     text,
     childUnits: {
-        BodyChild
+        BodyChild,
+        UserList
     }
 }) => {
     return (
         <div className='body' >
             {text}
             <BodyChild />
+            <br />
+            <br />
+            <UserList />
         </div>
     )
 }

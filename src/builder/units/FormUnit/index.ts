@@ -12,7 +12,7 @@ export const formUnit = createUnit({
     "params": {
         "defaultValue": "string"
     },
-    useMapProps: (({ model: { value, onChange, text } }) => {
+    useMapProps: (({ exports: { value, onChange, text } }) => {
         const v = useStore(value);
         const txt = useStore(text)
 
@@ -32,9 +32,12 @@ export const formUnit = createUnit({
         value.on(setValue, (_, v) => v);
 
         return {
-            value,
-            onChange: setValue,
-            text
+            exports: {
+                value,
+                onChange: setValue,
+                text
+            },
+            local: {}
         }
     } 
 })

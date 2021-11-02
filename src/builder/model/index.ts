@@ -20,7 +20,7 @@ export const $schema = createStore<Schema>({
             'Header': '1'
         },
         params: {
-            "someValue": 'hui'
+            "someValue": '123'
         },
         requires: {
             "x": ['2', 'x'],
@@ -61,7 +61,8 @@ export const $schema = createStore<Schema>({
         id: '4',
         name: 'bodyUnit',
         childUnits: {
-            'BodyChild': '3'
+            'BodyChild': '3',
+            'UserList': 'user-list'
         },
         params: {
             text: 'center'
@@ -78,6 +79,17 @@ export const $schema = createStore<Schema>({
         requires: {
             'toggle': ['form', 'onClick']
         },
+    },
+    'user-list': {
+        id: 'user-list',
+        name: 'userListUnit',
+        childUnits: null,
+        params: {
+            initialFilter: 'Gena'
+        },
+        requires: {
+            'filter': ['model', 'value']
+        }
     }
 })
 
@@ -129,11 +141,11 @@ export const $models = $schema.map<Models>((schema, models = {  }) => {
                         throw new Error('failed to resolve required model');
                     }
 
-                    if (!(exportName in newModel) || newModel[exportName] === undefined) {
+                    if (!(exportName in newModel['exports']) || newModel['exports'][exportName] === undefined) {
                         throw new Error('failed to get required value from model')
                     }
 
-                    return [importName, newModel[exportName]! ]
+                    return [importName, newModel['exports'][exportName]! ]
 
                 }
             )

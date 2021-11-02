@@ -14,6 +14,6 @@ export const leftSideUnit = createUnit({
     },
     model: () => {
         console.log(' model left side unit ')
-        return { x: createEvent<string>() }
+        return { exports: { x: createEvent<string>() }, local: {} }
     }
 })

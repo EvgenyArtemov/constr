@@ -22,7 +22,6 @@ export const rightSideUnit = createUnit({
         }
     },
     model: () => {
-        console.log(' model right side unit ')
-        return {}
+        return { exports: {}, local: {} }
     }
 })

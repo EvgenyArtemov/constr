@@ -6,3 +6,4 @@ export { bodyUnit } from './Body';
 export { filterFormUnit } from './FilterForm';
 export { formUnit } from './FormUnit';
 export { buttonUnit } from './Button';
+export { userListUnit } from './UserList';

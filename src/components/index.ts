@@ -5,3 +5,4 @@ export { Body } from './Body';
 export { FilterForm } from './FilterForm';
 export { Form } from './Form';
 export { Button } from './Button';
+export { UserList } from './UserList';

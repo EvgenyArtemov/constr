@@ -46,7 +46,10 @@ type ModelFields<T extends UnitsType['modelFields'], NT extends NonNullable<T> =
     : { [K in keyof NT['imports']['stores'] ]: [string, string]  } &
     { [K in keyof NT['imports']['events'] ]: [string, string]  }
 
-export type Model = { [K: string]: Event<string | number> | Store<string | number> }
+export type Model = { 
+    exports:  { [K: string]: Event<string | number> | Store<string | number> },
+    local: { [K:string]: Event<any> | Store<any> }
+}
 
 export type Models = { [unitId: string]: Model }
 export type Schema = { [unitId: string]: SchemaUnitType<UnitsTypeKeys> }

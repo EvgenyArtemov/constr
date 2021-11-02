@@ -1,11 +1,9 @@
 import { createUnit } from '../../utils';
-
-import { useStore } from 'effector-react';
-
 export const bodyUnit = createUnit({
     component: 'Body',
     childUnits: {
-        'BodyChild': 'required'
+        'BodyChild': 'required',
+        'UserList': 'required'
     },
     'params': {
         'text': 'string'

@@ -11,6 +11,7 @@ export const createUnit = <
         imports: { stores: { [K: string]: 'string' | 'number' }, events: { [K: string]: 'string' | 'number' } },
         exports: { stores: { [K: string]: 'string' | 'number' }, events: { [K: string]: 'string' | 'number' } }
     },
+    Local extends { [K: string]: Event<any> | Store<any> },
     Imports extends { stores: { [K: string]: 'string' | 'number' }, events: { [K: string]: 'string' | 'number' }} = Exclude<M, null>['imports'],
     Exports extends { stores: { [K: string]: 'string' | 'number' }, events: { [K: string]: 'string' | 'number' }} = Exclude<M, null>['exports']
 >({
@@ -27,14 +28,18 @@ export const createUnit = <
     useMapProps: (args: 
         {   
             params: SchemaUnitParams<K>,
-            model: MapFields<Exports>['stores'] & MapFields<Exports>['events']
+            exports: MapFields<Exports>['stores'] & MapFields<Exports>['events'],
+            local: Local
         },
     ) => Omit<ComponentProps<typeof Components[T]>, 'childUnits'>,
     modelFields: M,
     model: M extends null ? null : (arg: { 
         params: SchemaUnitParams<K>,
         imports: MapFields<Imports>['stores'] & MapFields<Imports>['events'],
-    }) => MapFields<Exports>['stores'] & MapFields<Exports>['events'];
+    }) => { 
+        exports: MapFields<Exports>['stores'] & MapFields<Exports>['events'],
+        local: Local
+    }
 }) => ({
     component,
     childUnits,

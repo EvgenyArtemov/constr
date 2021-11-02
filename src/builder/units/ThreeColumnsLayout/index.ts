@@ -12,7 +12,7 @@ export const threeColumnsUnit = createUnit({
     params: {
         someValue: 'string'
     },
-    useMapProps: ( { params: { someValue }, model: { x } } ) => ({  }),
+    useMapProps: ( { params: { someValue }, exports: { x } } ) => ({  }),
     modelFields: {
         "imports": {
             "events": { x: "string" },
@@ -26,6 +26,6 @@ export const threeColumnsUnit = createUnit({
     model: ({ imports: { x }, params: { someValue } }) => { 
         console.log('model three columns layout', x, someValue)
 
-        return { 'x': createEvent<string>() }
+        return { local: {}, exports:  {'x': createEvent<string>()} }
     }
 })

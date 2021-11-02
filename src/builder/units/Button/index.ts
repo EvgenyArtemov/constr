@@ -13,8 +13,11 @@ export const buttonUnit = createUnit({
         const onClick = createEvent<string>()
 
         return {
-            onClick
+            exports: {
+                onClick
+            },
+            local: {}
         }
     },
-    useMapProps: ({ model: { onClick } }) => ({ onClick })
+    useMapProps: ({ exports: { onClick } }) => ({ onClick })
 })
